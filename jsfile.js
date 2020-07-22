@@ -25,22 +25,17 @@ function clearSquares() {
   }
 }
 
-createSquares(8);
+function clearOnly() {
+  createSquares(nSize);
+}
+
+let nSize = 60;
+function newSize() {
+  nSize = prompt("please enter new size");
+  createSquares(nSize);
+}
+
+createSquares(60);
 document.getElementById("clearButton").addEventListener("click", clearOnly);
 
-function clearOnly() {
-  createSquares(8);
-}
-
 document.getElementById("inputSizeButton").addEventListener("click", newSize);
-
-function newSize() {
-  let size = prompt("please enter new size");
-  createSquares(size);
-
-  // if (size) {
-  //   createSquares(size);
-  // } else {
-  //   createSquares(60);
-  // }
-}
