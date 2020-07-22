@@ -1,32 +1,46 @@
-let container = document.body.getElementsByClassName("container")[0];
-console.log(container);
+function createSquares(size) {
+  if (!size) {
+    return;
+  }
+  clearSquares();
+  const container = document.getElementById("container");
+  container.style.gridTemplateRows = `repeat(${size},auto)`;
+  container.style.gridTemplateColumns = `repeat(${size},auto)`;
 
-const size = 16;
-for (let i = 0; i < 4 * 4; i++) {
-  let grid = document.createElement("div");
-  grid.classList.add("grid");
-  grid.style.width = `${Math.sqrt((30 * 30) / size)}vw`;
-  grid.style.height = `${Math.sqrt((30 * 30) / size)}vw`;
-  container.appendChild(div);
-  container.appendChild(grid);
+  for (i = 0; i < size * size; i++) {
+    const square = document.createElement("div");
+    square.setAttribute("class", "grid");
+    square.style.border = "1px solid black";
+    square.addEventListener("mouseenter", (e) => {
+      square.style.backgroundColor = "black";
+    });
+    container.appendChild(square);
+  }
 }
 
-// let grids = document.getElementsByClassName("grid");
-// for (let grid of grids) {
-//   console.log(grid);
-//   console.log(grid.offsetWidth);
-//   console.log(grid.getBoundingClientRect());
-// }
-// console.log(grids.length);
+function clearSquares() {
+  const squares = document.querySelectorAll(".grid");
+  for (let square of squares) {
+    square.remove();
+  }
+}
 
-// console.log(container.style.gridTemplateColumns);
-// container.style.gridTemplateColumns = "repeat(4, 1fr)";
+createSquares(8);
+document.getElementById("clearButton").addEventListener("click", clearOnly);
 
-// function changeColor() {
-//   this.style.backgroundColor = "black";
-// }
+function clearOnly() {
+  createSquares(8);
+}
 
-// let grids = document.getElementsByClassName("grid");
-// for (let grid of grids) {
-//   grid.addEventListener("mouseover", changeColor, false);
-// }
+document.getElementById("inputSizeButton").addEventListener("click", newSize);
+
+function newSize() {
+  let size = prompt("please enter new size");
+  createSquares(size);
+
+  // if (size) {
+  //   createSquares(size);
+  // } else {
+  //   createSquares(60);
+  // }
+}
