@@ -29,10 +29,13 @@ function clearOnly() {
   createSquares(nSize);
 }
 
-let nSize = 60;
+let nSize = 40;
 function newSize() {
-  nSize = prompt("please enter new size");
-  createSquares(nSize);
+  const size = prompt("please enter new size");
+  if (size) {
+    nSize = size;
+    createSquares(nSize);
+  }
 }
 
 createSquares(60);
